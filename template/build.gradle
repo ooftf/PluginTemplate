@@ -1,0 +1,22 @@
+apply plugin: 'groovy'
+apply plugin: 'com.novoda.bintray-release'
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}
+
+publish {
+    repoName = 'maven'
+    userOrg = 'ooftf'      // bintray注册的用户名
+    groupId = 'com.ooftf'
+    artifactId = "plugin-demo"// bintray创建的package
+    publishVersion = '1.0.0'
+    desc = 'nothing'
+    bintrayUser = 'ooftf'
+    bintrayKey = LocalBintrayKey()
+    dryRun = false
+}
