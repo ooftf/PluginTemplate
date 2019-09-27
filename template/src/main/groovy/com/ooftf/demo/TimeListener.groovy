@@ -8,19 +8,21 @@ import org.gradle.api.initialization.Settings
 import org.gradle.api.invocation.Gradle
 import org.gradle.api.tasks.TaskState
 
+import java.util.concurrent.ConcurrentHashMap
+
 class TimeListener implements TaskExecutionListener, BuildListener {
     private times = []
-    long start
-
+    Map<String,Long> startMap = new ConcurrentHashMap<>()
     @Override
     void beforeExecute(Task task) {
-        start = System.currentTimeMillis()
+        printf("beforeExecute::"+task.getName())
+        startMap.put(task.getName(),System.currentTimeMillis())
     }
 
     @Override
     void afterExecute(Task task, TaskState taskState) {
-        def ms = System.currentTimeMillis() - start
-
+        printf("afterExecute::"+task.getName())
+        def ms = System.currentTimeMillis() - startMap.get(task.getName())
         times.add([ms, task.path])
         task.project.logger.warn "${task.path} spend ${ms}ms"
     }
