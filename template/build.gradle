@@ -13,7 +13,7 @@ publish {
     repoName = 'maven'
     userOrg = 'ooftf'      // bintray注册的用户名
     groupId = 'com.ooftf'
-    artifactId = "plugin-demo"// bintray创建的package
+    artifactId = "plugin-task-time"// bintray创建的package
     publishVersion = '1.0.0'
     desc = 'nothing'
     bintrayUser = 'ooftf'
